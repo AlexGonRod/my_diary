@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '@components/Navbar.astro';
+import SupabaseIcon from '@components/icons/SupabaseIcon.astro';
+import AstroIcon from '@components/icons/AstroIcon.astro';
+
+const { cookies } = Astro;
+
+const token = cookies.get('sb-token');
+const refreshToken = cookies.get('sb-refresh-token');
+const isLogged = token?.value && refreshToken?.value;
+
+export const prerender = true;
+---
+
+<Layout title="Supabase auth within Astro template.">
+	<Navbar {isLogged} hide/>
+	<main
+		class="bg-gray-800 flex-1 flex flex-col gap-4 items-center p-4 pt-16 justify-start sm:justify-center h-full w-full m-x-auto text-white"
+	>
+		<h1 class="text-2xl sm:text-4xl font-bold text-center">
+			Supabase auth within Astro Template
+		</h1>
+		<ul class="flex gap-6 items-center font-bold text-2xl mt-6 justify-center">
+			<li
+				class="dark:bg-zinc-800 bg-white border-t dark:border-zinc-700 h-20 w-20 border-transparent rounded-lg shadow dark:shadow-none flex items-center justify-center"
+			>
+				<a href="https://astro.build/"><AstroIcon /></a>
+			</li>
+			 &plus;
+			<li
+				class="dark:bg-zinc-800 bg-white border-t dark:border-zinc-700 h-20 w-20 border-transparent rounded-lg shadow dark:shadow-none flex items-center justify-center"
+			>
+				<a href="https://supabase.com/"><SupabaseIcon /></a>
+			</li>
+			 &plus;
+			<li
+				class="dark:bg-zinc-800 bg-white border-t dark:border-zinc-700 h-20 w-20 border-transparent rounded-lg shadow dark:shadow-none flex items-center justify-center"
+			>
+				<a href="https://tailwindui.com/"
+					><img
+						class="h-8 w-auto"
+						src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+						alt="Tailwind icon"
+					/>
+				</a>
+			</li>
+		</ul>
+		<ul class="flex gap-6 items-center font-bold text-xl mt-4">
+			<p class="mt-6 text-s font-light">You can</p>
+			<li class="mt-6">
+				<a href="/register">Register</a>
+			</li>
+			<p class="mt-6 text-s font-light">or</p>
+			<li class="mt-6">
+				<a href="/signin">Log In</a>
+			</li>
+		</ul>
+	</main>
+</Layout>
