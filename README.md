@@ -1,21 +1,32 @@
+# A diary with a spell chacker (spanish)
+This as an app for my daughter to write a diary tah check the spelling and marks in red color wherever she fails.
+
 # Astro auth with Supabase
-Template done using Astro and Tailwind that uses Supabase as an auth provider.
+Template done using Astro and Tailwind that uses Supabase bot as an auth provider and a database.
+This repo is based on [AlexGonRod/astro_auth_supabase](https://github.com/AlexGonRod/astro_auth_supabase)
 
-To use this template you can just clone this repo and then:
 
+To use this template you can just clone this repo with Bun:
+```
+bunx create-astro@latest my-astro-project-using-bun --template AlexGonRod/astro_auth_supabase
+```
+and then:
+```
+bun install
+```
 
-## 🧞 Commands
+## 🧞 Commands using Bun
 
 All commands are run from the root of the project, from a terminal:
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| `bun install`             | Installs dependencies                            |
+| `bun run dev`             | Starts local dev server at `localhost:4321`      |
+| `bun run build`           | Build your production site to `./dist/`          |
+| `bun run preview`         | Preview your build locally, before deploying     |
+| `bun run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `bun run astro -- --help` | Get help using the Astro CLI                     |
 
 ## Folder structure
 ```text
@@ -25,9 +36,6 @@ All commands are run from the root of the project, from a terminal:
 ├── src/
 │   ├── components/
 │   │   └── Navbar.astro
-│   │   └── icons/
-│   │       └── SupabaseIcon.astro
-│   │       └── AstroIcon.astro
 │   ├── layouts/
 │   │   └── Layout.astro
 │   ├── middelware/
