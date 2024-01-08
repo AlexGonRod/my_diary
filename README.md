@@ -1,4 +1,4 @@
-# A diary with a spell chacker (spanish)
+# A diary with a spell checker (spanish)
 This as an app for my daughter to write a diary tah check the spelling and marks in red color wherever she fails.
 
 # Astro auth with Supabase
