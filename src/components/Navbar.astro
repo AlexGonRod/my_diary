@@ -1,19 +1,21 @@
 ---
 import AstroIcon from '@components/icons/AstroIcon.astro';
 
+interface Props {
+	isLogged: boolean;
+}
 
-const { isLogged, hide } = Astro.props;
+const { isLogged } = Astro.props;
 ---
-{!hide &&
-	<nav class="bg-gray-800">
-		<div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-			<div class="relative flex h-16 items-center justify-between">
-				<div
-					class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between"
-				>
-					<div class="flex flex-shrink-0 items-center">
-						<AstroIcon>
-					</div>
+
+<nav class="bg-gray-800">
+	<div class="max-w-7xl px-1 ">
+		<div class="relative flex h-16 items-center justify-between">
+			<div
+				class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between"
+			>
+				<div class="flex flex-shrink-0 items-center">
+					<AstroIcon />
 					<div class="hidden sm:ml-6 sm:block">
 						<div class="flex space-x-4">
 							{
@@ -67,5 +69,5 @@ const { isLogged, hide } = Astro.props;
 				>
 			</div>
 		</div>
-	</nav>
-}
+	</div>
+</nav>
