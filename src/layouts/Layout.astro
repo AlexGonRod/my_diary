@@ -27,7 +27,7 @@ const { title, description } = Astro.props;
 		<title>{title}</title>
 		<ViewTransitions />
 	</head>
-	<body class="h-[100vh] w-full">
+	<body class="h-100 w-full">
 		{
 			isLogged && (
 				<>
@@ -36,10 +36,28 @@ const { title, description } = Astro.props;
 			)
 		}
 		<slot />
-		<style is:global>
-			html {
-				font-family: "Onest Variable", system-ui, sans-serif;
-			}
-		</style>
 	</body>
+
+<style is:global>
+		html {
+			font-family: 'Onest Variable', system-ui, sans-serif;
+		}
+		ins, del {
+			border-radius: 3px;
+			display: inline-block;
+			margin: 0 5px;
+			box-sizing: border-box;
+			padding: 3px;
+		}
+		ins {
+			color: black;
+			border: 1px solid rgb(255, 225, 0);
+			background-color: rgb(255, 225, 0);
+		}
+		del {
+			color: white;
+			border: 1px solid rgb(255, 0, 0);
+			background-color: rgb(255, 0, 0);
+		}
+	</style>
 </html>
