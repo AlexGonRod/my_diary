@@ -3,15 +3,26 @@ import { fetchData } from '@lib/fetchData';
 import { supabase } from "@lib/supabase";
 
 export const POST: APIRoute = async ({ request, redirect }) => {
-    const formdata = await request.formData();
-    const textarea = formdata.get('textarea')?.toString();
+    const { data } = await supabase.auth.getUser()
 
-    if (!textarea) return new Response('No text added', { status: 400 })
+    if (data.user !== null) {
+        const formdata = await request.formData();
+        const textarea = formdata.get('textarea')?.toString();
 
-    const { result_html_new } = await fetchData(textarea);
+        if (!textarea) return new Response('No text added', { status: 500 })
 
-    const { error } = await supabase.from('messages').insert({ message: textarea, response: result_html_new })
-    if (error) return new Response(error.message, { status: 500 })
+        const result = await fetchData(textarea);
+        console.log(result)
 
-    return redirect('/')
+        if (result?.status !== 'success') return new Response(result?.message, { status: 400 })
+
+        const { error } = await supabase.from('messages').insert({ message: result?.result_text_old, response: result?.result })
+
+        if (error) return new Response(error.message, { status: 500 })
+
+        return redirect('/')
+    }
+
+
 }
+
