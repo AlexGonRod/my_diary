@@ -58,12 +58,12 @@ const isLogged = token?.value !== undefined && token?.value.length > 0;
 				</ul>
 			</main>
 		) : (
-			<section class="grid grid-cols-10 auto-rows-[35rem] gap-0">
-				<aside class="col-span-0 md:col-span-2">
+			<main class="grid grid-cols-10 auto-rows-[35rem] gap-0 ">
+				<aside class="col-span-0 md:col-span-2 h-100 bg-gray-600">
 					<SideBar />
 				</aside>
 				<Main />
-			</section>
+			</main>
 		)
 	}
 </Layout>
