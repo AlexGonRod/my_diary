@@ -9,65 +9,71 @@ const { isLogged } = Astro.props;
 ---
 
 <nav class="bg-gray-800">
-	<div class="max-w-7xl px-1 ">
-		<div class="relative flex h-16 items-center justify-between">
-			<div
-				class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between"
-			>
-				<div class="flex flex-shrink-0 items-center">
-					<AstroIcon />
-					<div class="hidden sm:ml-6 sm:block">
-						<div class="flex space-x-4">
-							{
-								!isLogged ? (
-									<>
-										<a
-											href="/register"
-											class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm lg:text-base font-medium"
-										>
-											Register
-										</a>
-										<a
-											href="/signin"
-											class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm lg:text-base font-medium"
-										>
-											Log In
-										</a>
-									</>
-								) : (
+	<div class="p-3">
+		<div class="relative h-16 items-center justify-between">
+			<div class="flex items-center w-full justify-between">
+				<AstroIcon />
+				<div class="sm:ml-6 sm:block">
+					<div class="flex space-x-4">
+						{
+							!isLogged ? (
+								<>
 									<a
-										href="/signout"
-										class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm lg:text-base font-medium"
+										href="/register"
+										class="ister regtext-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm lg:text-base font-medium"
 									>
-										Log out
+										Register
 									</a>
-								)
-							}
-						</div>
+									<a
+										href="/signin"
+										class="login text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm lg:text-base font-medium"
+									>
+										Log In
+									</a>
+								</>
+							) : (
+								<a
+									href="/signout"
+									class="logout text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm lg:text-base font-medium"
+								>
+									Log out
+								</a>
+							)
+						}
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<!-- Mobile menu, show/hide based on menu state. -->
-		<div class="sm:hidden" id="mobile-menu">
+		<!-- <div class="hidden" id="mobile-menu">
 			<div class="px-2 pb-3 pt-2 flex justify-center">
-				<a
-					href="/register"
-					class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-					>Register</a
-				>
-				<a
-					href="/signin"
-					class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-					>Log In</a
-				>
-				<a
-					href="/signout"
-					class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-					>Log out</a
-				>
+				{
+					!isLogged ? (
+						<>
+							<a
+								href="/register"
+								class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+							>
+								Register
+							</a>
+							<a
+								href="/signin"
+								class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+							>
+								Log In
+							</a>
+						</>
+					) : (
+						<a
+							href="/signout"
+							class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+						>
+							Log out
+						</a>
+					)
+				}
 			</div>
-		</div>
+		</div> -->
 	</div>
 </nav>

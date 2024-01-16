@@ -1,17 +1,27 @@
-<div class="flex justify-left items-center">
-	<section class="inset-y-0 left-0 max-w-full flex">
-		<div class="w-screen max-w-md">
-			<div class="h-100 flex flex-col py-6 bg-gray-800/90 shadow-xl">
-				<div class="mt-4 px-4 h-full overflow-auto">
-					<div class="grid grid-cols-1 gap-2">
-						<article
-							class="bg-transparent p-1 cursor-pointer rounded-md text-pretty"
-						>
-							<p class="text-white/90 text-sm lg:text-base">Content for card 1.</p>
-						</article>
+<aside
+	class="hidden md:grid justify-left h-screen col-span-0 md:col-span-2 bg-gray-800"
+>
+	<div class="flex flex-col py-6 mx-4">
+		<ol class="grid grid-cols-1 gap-y-2">
+			<li
+				style="text-wrap: nowrap"
+				class="hover:bg-gray-500/90 p-1 cursor-pointer"
+			>
+				<span
+					class="relative hover:text-grey-800 text-white/90 text-sm lg:text-base"
+				>
+					Content for card 1asdasdas.
+					<div
+						class="absolute bottom-0 right-0 top-0 bg-gradient-to-l to-transparent w-16 from-gray-800 from-20%"
+					>
 					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-</div>
+				</span>
+			</li>
+			<li
+				class="hover:text-grey-800 text-white/90 block p-1 cursor-pointer"
+			>
+				<span class="text-sm lg:text-base">Content for card 1.</span>
+			</li>
+		</ol>
+	</div>
+</aside>
