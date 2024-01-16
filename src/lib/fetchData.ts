@@ -1,5 +1,4 @@
 export const fetchData = async (text: string) => {
-    // console.log(text)
 
     const url = 'https://rimedia-paraphraser.p.rapidapi.com/api_paraphrase.php';
     let result = {};
