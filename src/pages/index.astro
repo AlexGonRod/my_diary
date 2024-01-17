@@ -4,18 +4,18 @@ import SupabaseIcon from '@components/icons/SupabaseIcon.astro';
 import AstroIcon from '@components/icons/AstroIcon.astro';
 import SideBar from '@components/SideBar.astro';
 import Main from '@components/Main.astro';
+import { supabase } from '@lib/supabase';
 
 export const prerender = true;
+const { data } = await supabase.auth.getUser();
 
-const { cookies } = Astro;
-
-const token = cookies.get('sb-token');
-const isLogged = token?.value !== undefined && token?.value.length > 0;
+const isLogged = data?.user !== null;
 ---
 
 <Layout
 	title="Supabase auth within Astro template."
 	description="App that uses AI to check the spell"
+	{isLogged}
 >
 	{
 		!isLogged ? (

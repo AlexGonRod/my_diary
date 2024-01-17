@@ -3,14 +3,12 @@ import '@fontsource-variable/onest';
 import Navbar from '@components/Navbar.astro';
 import { ViewTransitions } from 'astro:transitions';
 
-const { cookies } = Astro;
-
-const token = cookies.get('sb-token');
-const isLogged = token?.value !== undefined && token?.value.length > 0;
+const { isLogged } = Astro.props;
 
 interface Props {
 	title: string;
 	description: string;
+	isLogged?: boolean
 }
 
 const { title, description } = Astro.props;

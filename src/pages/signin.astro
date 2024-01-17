@@ -1,18 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const {redirect, cookies} = Astro;
-
-const token = cookies.get('sb-token');
-const refreshToken = cookies.get('sb-refresh-token');
-
-if(token && refreshToken) {
-    return redirect('/')
-}
 ---
 
 <Layout title="Sign In" description="Sign In page">
-	<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-gray-800">
+	<div
+		class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-gray-800"
+	>
 		<div class="sm:mx-auto sm:w-full sm:max-w-sm">
 			<h2
 				class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white"

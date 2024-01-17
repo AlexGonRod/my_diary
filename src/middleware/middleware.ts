@@ -1,13 +1,14 @@
 import { defineMiddleware } from "astro:middleware";
 const protectedUrls = ['/signin', '/signout', '/register', '/']
+import { supabase } from "@lib/supabase";
 
 export const onRequest = defineMiddleware(
     async ({url, redirect, cookies}, next) => {
         if(protectedUrls.includes(url.pathname)) {
-            const token = cookies.get('sb-token')
-            const refreshToken = cookies.get('sb-refresh-token')
+            const { data } = await supabase.auth.getUser();
+            const isLogged = data?.user !== null
 
-            if(!token || !refreshToken) {
+            if(!isLogged) {
                 return redirect('/signin')
             }
             return redirect('/')
