@@ -1,0 +1,16 @@
+{
+    "status": "success",
+    "message": "",
+    "mode": "standard",
+    "text": "Los beatles son un grupo que tuvo suerte de nacer y crecer en su epoca, por lo que nada se parecia a ellos",
+    "lang": "es",
+    "paraphrase_capital": "true",
+    "result": "Los <del>beatles </del><ins>Beatles </ins>son un grupo que tuvo <del>suerte </del><ins>la oportunidad </ins>de nacer y crecer en su <del>epoca, </del><ins>tiempo, </ins>por lo que nada se <del>parecia </del><ins>parecía </ins>a ellos",
+    "count_characters": "106",
+    "count_words": "23",
+    "count_changed_words": "4",
+    "result_html_old": "Los <del>beatles </del>son un grupo que tuvo <del>suerte </del>de nacer y crecer en su <del>epoca, </del>por lo que nada se <del>parecia </del>a ellos",
+    "result_html_new": "Los <ins>Beatles </ins>son un grupo que tuvo <ins>la oportunidad </ins>de nacer y crecer en su <ins>tiempo, </ins>por lo que nada se <ins>parecía </ins>a ellos",
+    "result_text_old": "Los beatles son un grupo que tuvo suerte de nacer y crecer en su epoca, por lo que nada se parecia a ellos",
+    "result_text_new": "Los Beatles son un grupo que tuvo la oportunidad de nacer y crecer en su tiempo, por lo que nada se parecía a ellos"
+}
