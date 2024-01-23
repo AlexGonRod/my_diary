@@ -1,6 +1,7 @@
 <script>
 	import {BaseMessage} from '@lib/store'
 	let message = null
+
 </script>
 
 <form
@@ -21,7 +22,7 @@
 	</div>
 	<div class="flex justify-end py-5">
 		<button
-			on:click={() => message && BaseMessage.set(true)}
+			on:click={() => BaseMessage.set(message)}
 			type="submit"
 			class="button rounded-md bg-indigo-600 px-3 py-1.5 text-sm lg:text-base font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 			>Send
