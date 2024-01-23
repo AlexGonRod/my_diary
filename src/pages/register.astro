@@ -1,9 +1,11 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import LayoutBase from '../layouts/LayoutBase.astro';
 ---
 
-<Layout title="Register" description="Register page">
-	<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-gray-800">
+<LayoutBase title="Register" description="Register page">
+	<div
+		class="flex h-screen w-full flex-col justify-center px-6 py-12 lg:px-8 bg-gray-800"
+	>
 		<div class="sm:mx-auto sm:w-full sm:max-w-sm">
 			<h2
 				class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white"
@@ -70,4 +72,5 @@ import Layout from '../layouts/Layout.astro';
 			</p>
 		</div>
 	</div>
-</Layout>
+	</LayoutBase
+</LayoutBase>
