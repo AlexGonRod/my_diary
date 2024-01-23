@@ -1,0 +1,34 @@
+---
+import Textarea from '@components/Textarea.svelte';
+import Result from '@components/Result.svelte';
+import Layout from '../layouts/Layout.astro';
+import { supabase } from '@lib/supabase';
+
+const { data } = await supabase.auth.getUser();
+const { cookies } = Astro;
+
+const user = cookies.get('sb-token');
+const isLogged = data?.user !== null && user?.value !== undefined;
+---
+
+<Layout
+	title="Spell Checker"
+	description="App that uses AI to check the spell"
+	{isLogged}
+>
+	<section
+		class="h-screen col-span-10 md:col-span-8 bg-gray-800 flex flex-col items-center text-white"
+	>
+		<h1 class="text-2xl sm:text-4xl font-bold text-center">
+			¿Cómo puedo ayudarte?
+		</h1>
+        <Result client:load />
+        <Textarea client:visible />
+		<!-- <main class="grid grid-cols-10 auto-rows-[35rem] gap-0">
+			<section
+				class="h-screen col-span-10 md:col-span-8 bg-gray-800 flex flex-col items-center text-white"
+			>
+			</section>
+		</main> -->
+	</section>
+</Layout>
