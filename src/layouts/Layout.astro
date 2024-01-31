@@ -3,6 +3,7 @@ import '@fontsource-variable/onest';
 import Navbar from '@components/Navbar.astro';
 import { ViewTransitions } from 'astro:transitions';
 import SideBar from '@components/SideBar.astro';
+import Toast from '@components/Toast.astro';
 
 interface Props {
 	title: string;
@@ -24,32 +25,33 @@ const { title, description, isLogged } = Astro.props;
 		<title>{title}</title>
 		<ViewTransitions />
 	</head>
-	<body class="h-screen w-full min-w-[430px] bg-gray-800">
+	<body class="w-screen bg-[#353441]">
 		<Navbar {isLogged} />
-		<main class="grid grid-cols-10 auto-rows-[35rem] gap-0">
+		<main class="h-[580px] grid grid-cols-10 auto-rows-[35rem] gap-0">
+			{!isLogged && <Toast message="Need to Log In" error={isLogged} />}
 			<SideBar />
-			<slot />
+				<slot />
+			<style is:global>
+				html {
+					font-family: 'Onest Variable', system-ui, sans-serif;
+				}
+				ins,
+				del {
+					border-radius: 3px;
+					display: inline-block;
+					margin: 0 5px;
+					box-sizing: border-box;
+					padding: 3px;
+				}
+				ins {
+					border: 1px solid rgb(255, 225, 0);
+					color: rgb(255, 225, 0);
+				}
+				del {
+					border: 1px solid rgb(255, 0, 0);
+					color: rgb(255, 0, 0);
+				}
+			</style>
 		</main>
-		<style is:global>
-			html {
-				font-family: 'Onest Variable', system-ui, sans-serif;
-			}
-			ins,
-			del {
-				border-radius: 3px;
-				display: inline-block;
-				margin: 0 5px;
-				box-sizing: border-box;
-				padding: 3px;
-			}
-			ins {
-				border: 1px solid rgb(255, 225, 0);
-				color: rgb(255, 225, 0);
-			}
-			del {
-				border: 1px solid rgb(255, 0, 0);
-				color: rgb(255, 0, 0);
-			}
-		</style>
 	</body>
 </html>

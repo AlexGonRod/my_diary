@@ -4,11 +4,18 @@ import { supabase } from "@lib/supabase";
 export const GET: APIRoute = async ({request}) => {
     const url = new URL(request.url)
     const id = url.searchParams.get('id')
-    const { data, error } = await supabase.from('messages').select().eq('id', Number(id))
+    let response, errors;
+    try {
+        const { data, error } = await supabase.from('messages').select().eq('id', Number(id))
+        if (error) errors = error;
 
-    if (error) return new Response('Error getting data', { status: 404 })
+        response = data;
 
-    return new Response(JSON.stringify(data[0]), {
+    } catch (err) {
+        return new Response('Error getting data', { status: 400 })
+    }
+
+    return new Response(JSON.stringify(response && response[0]), {
         status: 200,
         headers: {
             "Content-Type": "application/json"
