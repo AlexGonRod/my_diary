@@ -1,20 +1,35 @@
-import {atom, map} from 'nanostores'
+import {atom, map} from 'nanostores';
 
-export type Message = {
-    id: Number,
-    message: string,
-    response: string
-};
+export type Error = {
+    form?: string;
+    message?: string
+}
 
-export const BaseMessage = atom('');
-export const NewMessage = map<Record<string, Message>>({});
-export const isLoading = atom(false)
+export const NewMessage = atom('');
+export const NewResponse = atom('');
+export const Errors = map<Error>({form: '', message: ''});
 
-export function SetNewMessage(id: number, message: string, response: string) {
+export function SetNewResponse( response: string) {
     try {
-        NewMessage.setKey('message', {id, message, response})
+        NewResponse.set(response)
     } catch (error) {
-        return new Response('bad request', {status: 400})
+        return new Response('Bad request', {status: 400})
+    }
+}
+export function SetNewMessage(message: string) {
+    try {
+        NewMessage.set(message)
+    } catch (error) {
+        return new Response('Bad request', {status: 400})
+    }
+}
+
+export function SetNewError({form, message}: Error) {
+    try {
+        if(form) Errors.setKey('form', form)
+        if(message) Errors.setKey('message', message)
+    } catch (error) {
+        return new Response('Bad request', {status: 400})
     }
 }
 
