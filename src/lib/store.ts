@@ -7,6 +7,7 @@ export type Error = {
 
 export const NewMessage = atom('');
 export const NewResponse = atom('');
+export const isLoading = atom(false);
 export const Errors = map<Error>({form: '', message: ''});
 
 export function SetNewResponse( response: string) {
