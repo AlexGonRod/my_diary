@@ -6,38 +6,28 @@
 		SetNewResponse,
 		SetNewError,
 		Errors,
-	} from '@lib/store';
+		isLoading}
+		from '@lib/store';
 	import { fetchData } from '@lib/fetchData';
 
-	let textareaprops = {
-		id: 'message',
-		name: 'message',
-		label: 'Your message',
-		rows: 4,
-		placeholder: 'Leave a comment...',
-	};
 
 	let errors = { message: '', form: '' };
-	let isLoading: boolean = false;
-	let _texts;
-	let response;
 
 	async function saveData(results) {
 		try {
 			const { text, result } = results;
 
-			// const { data, error } = await supabase
-			// 	.from('messages')
-			// 	.upsert({ responses: { messages: text, responses: result } })
-			// 	.select();
-			// if (error) {
-			// 	errors.message += error.message;
-			// }
+			const { data, error } = await supabase
+				.from('messages')
+				.upsert({ responses: { messages: text, responses: result } })
+				.select();
+			if (error) {
+				errors.message += error.message;
+			}
 
-			// const res = data[0];
-			// response.push(...response,res?.responses);
+			const res = data[0].responses;
 
-			SetNewResponse(result);
+			SetNewResponse(res);
 		} catch (error) {
 			if (error instanceof Error) {
 				errors.message = error.message;
@@ -47,32 +37,33 @@
 		return { status: 'success' };
 	}
 
-	function resetErrors() {
+	function resetValues() {
 		errors = { message: '', form: '' };
 		SetNewError(errors);
+		SetNewResponse('')
 	}
 
-	async function submit(e) {
-		resetErrors();
-		const text = e.target.message.value;
+	async function submit(e: SubmitEvent) {
+		resetValues();
+		const text = e.target?.message.value;
 		if (text.length < 1) {
 			errors.form = 'Message is required';
 			SetNewError(errors);
 		} else {
             SetNewMessage(text);
             try {
-                isLoading = true;
+                isLoading.set(true);
                 const result = await fetchData(text);
                 if (result?.status !== 'success') errors.message = result?.message;
 
-                await saveData({ text, result: text });
+                await saveData({ text, result: result });
             } catch (error) {
                 if (error instanceof Error) {
                     errors.message = error.message;
                     SetNewError(errors);
                 }
             } finally {
-                isLoading = false;
+                isLoading.set(false);
             }
         }
 	}
