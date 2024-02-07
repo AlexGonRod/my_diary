@@ -1,10 +1,13 @@
-/// <reference types="astro/client" />
+
 
 interface ImportMetaEnv {
-    readonly SUPABASE_URL: string
-    readonly SUPABASE_ANON_KEY: string
+    readonly SUPABASE_URL: string;
+    readonly SUPABASE_ANON_KEY: string;
+    readonly RAPID_API_KEYY: string;
+    readonly RAPID_API_HOST: string;
+
 }
 
 interface ImportMeta {
-    readonly env: ImportMetaEnv
+    readonly env: ImportMetaEnv;
 }
