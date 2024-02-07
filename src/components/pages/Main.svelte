@@ -3,8 +3,8 @@
 	import Loader from '@components/Loader.svelte';
 	import Form from '@components/Form.svelte';
 	import Message from '@components/Message.svelte';
-	import { supabase } from '@lib/supabase';
-	import { NewMessage, NewResponse, Errors } from '@lib/store';
+	import { NewMessage, NewResponse, Errors, isLoading } from '@lib/store';
+	$: ({responses} = $NewResponse)
 </script>
 
 <section
@@ -18,10 +18,12 @@
 			<Toast message={$Errors.message} />
 		{/if}
 		{#if $NewMessage}
-			<Message message={$NewMessage} />
-
+			<Message user='YOU' message={$NewMessage} />
+			{#if $isLoading}
+				<Loader />
+			{/if}
 			{#if $NewResponse}
-				<Message message={$NewResponse} />
+				<Message user='IA' message={responses?.result} />
 			{/if}
 		{/if}
 	</div>

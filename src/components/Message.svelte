@@ -1,4 +1,5 @@
 <script lang="ts">
+export let user: string;
 export let message: string;
 </script>
 
@@ -9,7 +10,7 @@ export let message: string;
 				<div
 					class="gizmo-shadow-stroke flex h-6 w-6 items-center justify-center rounded-full"
 				>
-					<div class="relative flex font-bold">YOU</div>
+					<div class="relative flex font-bold">{user}</div>
 				</div>
 			</div>
 		</div>
@@ -20,7 +21,7 @@ export let message: string;
 				<div
 					class="min-h-[20px] text-message flex items-start gap-3 whitespace-pre-wrap break-words overflow-x-auto"
 				>
-					<div class="txt">{message}</div>
+					<div class="txt">{@html message}</div>
 				</div>
 			</div>
 		</div>
