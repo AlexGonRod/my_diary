@@ -4,7 +4,6 @@
 	import Form from '@components/Form.svelte';
 	import Message from '@components/Message.svelte';
 	import { NewMessage, NewResponse, Errors, isLoading } from '@lib/store';
-	$: ({responses} = $NewResponse)
 </script>
 
 <section
@@ -23,7 +22,7 @@
 				<Loader />
 			{/if}
 			{#if $NewResponse}
-				<Message user='IA' message={responses?.result} />
+				<Message user='IA' message={$NewResponse?.result} />
 			{/if}
 		{/if}
 	</div>
