@@ -1,27 +1,30 @@
 ---
-import Result from '@components/Result.svelte';
+import Main from '@components/pages/Main.svelte';
 import Layout from '../layouts/Layout.astro';
-import { supabase } from '@lib/supabase';
+import { supabase } from '@lib/db/supabase';
 
-const { data } = await supabase.auth.getUser();
-const { cookies, url } = Astro;
-const urlId = url.pathname.split('/')[1]
+const { cookies, url, redirect } = Astro;
 
-const user = cookies.get('sb-token');
-const isLogged = data?.user !== null && user?.value !== undefined;
+let isLogged = false;
+async function getLogIn() {
+	const { data } = await supabase.auth.getUser();
+	const user = cookies.get('sb-token');
+	const isLogged =  data?.user !== null && user?.value !== undefined;
+	return isLogged
+}
+isLogged = await getLogIn();
+if(!isLogged) return redirect('/')
+
+const urlId = url.pathname.split('/')[1];
+export let form: boolean = false;
+
+const {data} = await supabase.from('messages').select().eq('id', urlId)
+const conversation = data[0]
 ---
 
 <Layout
 	title="Spell Checker"
 	description="App that uses AI to check the spell"
-	{isLogged}
 >
-	<section
-		class="h-screen col-span-10 md:col-span-8 bg-gray-800 flex flex-col items-center text-white"
-	>
-		<h1 class="text-2xl sm:text-4xl font-bold text-center">
-			¿Cómo puedo ayudarte?
-		</h1>
-        <Result client:load {urlId}/>
-	</section>
+	<Main {form} {conversation}/>
 </Layout>
