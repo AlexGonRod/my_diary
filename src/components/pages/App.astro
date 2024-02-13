@@ -2,7 +2,7 @@
 import Index from '@components/pages/Index.astro';
 import Layout from '@layouts/Layout.astro';
 import Main from '@components/pages/Main.svelte';
-import { supabase } from '@lib/supabase';
+import { supabase } from '@lib/db/supabase';
 
 const { cookies } = Astro;
 const user = cookies.get('sb-token');
@@ -17,7 +17,7 @@ const STATUS_PAGE = {
 
 {
 	STATUS_PAGE.LOGGED ? (
-		<Layout title="Spell Checker" description="Spell Cheker App" {isLogged}>
+		<Layout title="Spell Checker" description="Spell Checker App" {isLogged}>
 			<Main client:load />
 		</Layout>
 	) : (

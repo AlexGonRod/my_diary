@@ -2,7 +2,7 @@
 import '@fontsource-variable/onest';
 import Navbar from '@components/Navbar.astro';
 import { ViewTransitions } from 'astro:transitions';
-import SideBar from '@components/SideBar.astro';
+import SideBar from '@components/SideBar.svelte';
 import Toast from '@components/Toast.svelte';
 
 interface Props {
@@ -23,14 +23,14 @@ const { title, description, isLogged } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" />
 		<title>{title}</title>
-		<!-- <ViewTransitions /> -->
+		<ViewTransitions />
 	</head>
 	<body class="w-screen bg-[#353441]">
 		<Navbar {isLogged} />
 		<main class="h-[580px] grid grid-cols-10 auto-rows-[35rem] gap-0">
 			<!-- {!isLogged && <Toast message="Need to Log In" />} -->
-			<SideBar />
-				<slot />
+			<SideBar client:load/>
+			<slot />
 		</main>
 	</body>
 </html>
