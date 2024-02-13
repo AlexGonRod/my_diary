@@ -3,7 +3,10 @@
 	import Loader from '@components/Loader.svelte';
 	import Form from '@components/Form.svelte';
 	import Message from '@components/Message.svelte';
-	import { NewMessage, NewResponse, Errors, isLoading } from '@lib/store';
+	import { NewMessage, NewResponse, Errors, isLoading } from '@lib/store/store';
+
+	export let form: boolean = true;
+	export let conversation = null;
 </script>
 
 <section
@@ -16,15 +19,21 @@
 		{#if $Errors?.message}
 			<Toast message={$Errors.message} />
 		{/if}
+		{#if conversation}
+			<Message user="YOU" message={conversation?.responses.message} />
+			<Message user="IA" message={conversation?.responses.responses.result} />
+		{/if}
 		{#if $NewMessage}
-			<Message user='YOU' message={$NewMessage} />
+			<Message user="YOU" message={$NewMessage} />
 			{#if $isLoading}
 				<Loader />
 			{/if}
 			{#if $NewResponse}
-				<Message user='IA' message={$NewResponse?.result} />
+				<Message user="IA" message={$NewResponse.result} />
 			{/if}
 		{/if}
 	</div>
-	<Form />
+	{#if form}
+		<Form />
+	{/if}
 </section>
