@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { Label, Input, Helper } from 'flowbite-svelte';
-	import { supabase } from '@lib/supabase';
+	import { supabase } from '@lib/db/supabase';
 	import {
 		SetNewMessage,
 		SetNewResponse,
 		SetNewError,
 		Errors,
 		isLoading,
-	} from '@lib/store';
-	import { fetchData } from '@lib/fetchData';
+	} from '@lib/store/store';
+	import { fetchData } from '@lib/utils/fetchData';
 
 	let errors = { message: '' };
 
@@ -18,7 +18,7 @@
 
 			const { data, error } = await supabase
 				.from('messages')
-				.upsert({ responses: { messages: text, responses: result } })
+				.upsert({ responses: { message: text, responses: result } })
 				.select();
 			if (error) {
 				errors.message = error.message;
