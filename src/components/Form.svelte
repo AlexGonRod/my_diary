@@ -8,9 +8,12 @@
 		Errors,
 		isLoading,
 	} from '@lib/store/store';
-	import { fetchData } from '@lib/utils/fetchData';
+	import { sendDataToFetch } from '@lib/utils/sendDataToFetch';
 
-	let errors = { message: '' };
+	let errors: {
+		message?: string | undefined;
+		formMessage?: string | undefined;
+	} = {};
 
 	async function saveData(results: any) {
 		try {
@@ -25,7 +28,7 @@
 				SetNewError(errors);
 			}
 
-			const {responses} = data[0].responses;
+			const { responses } = data[0].responses;
 
 			SetNewResponse(responses);
 		} catch (error) {
@@ -45,20 +48,25 @@
 
 	async function submit(e: SubmitEvent) {
 		resetValues();
-		const text = e.target?.message.value;
+		const text = e.target?.message?.value;
 		if (text.length < 1) {
-			errors.message = 'Message is required';
+			errors.formMessage = 'Message is required';
 			SetNewError(errors);
 		} else {
-			SetNewMessage(text);
 			try {
 				isLoading.set(true);
-				const result = await fetchData(text);
-				if (result?.status !== 'success')
-					errors.message = result.message;
-				SetNewError(errors)
+				const result: { status?: string; message?: string } =
+					await sendDataToFetch(text);
 
-				await saveData({ text, result: result });
+				if (result.status !== 'success') {
+					errors.message = result.message;
+					SetNewError(errors);
+				}
+
+				SetNewMessage(text);
+				if (!$Errors) {
+					await saveData({ text, result: result });
+				}
 			} catch (error) {
 				if (error instanceof Error) {
 					errors.message = error.message;
@@ -77,10 +85,10 @@
 >
 	<Label for="message" class="block mb-2 text-primary-50">Texto</Label>
 	<Input id="message" name="message" placeholder="Escribe lo que necesites" />
-	{#if $Errors?.form}
+	{#if $Errors?.formMessage}
 		<Helper class="text-sm mt-2" color="red"
 			><span class="font-medium">Algo falla! </span>
-			{$Errors.form}</Helper
+			{$Errors?.formMessage}</Helper
 		>
 	{/if}
 </form>
