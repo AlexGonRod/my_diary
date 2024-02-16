@@ -1,5 +1,5 @@
 import { defineMiddleware } from "astro:middleware";
-import { supabase } from "@lib/supabase";
+import { supabase } from "@lib/db/supabase";
 
 const protectedUrls = ['/signin', '/signout', '/register', '/']
 
@@ -16,7 +16,6 @@ export const onRequest = defineMiddleware(
 
             return redirect('/')
         }
-        console.log('hola')
         return next()
     }
 )
