@@ -6,14 +6,14 @@ export const GET: APIRoute = async () => {
     try {
         const { data, error } = await supabase.from('messages').select()
         if (error) {
-            console.log(error)
             return new Response(error.message, { status: 400 })
         }
 
         conversations = data
     } catch (error) {
-        console.log(error.message)
-        return new Response(error?.message, { status: 500 })
+        if (error instanceof Error) {
+            return new Response(error?.message, { status: 500 })
+        }
     }
 
     return new Response(JSON.stringify(conversations), {
