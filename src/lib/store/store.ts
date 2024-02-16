@@ -1,7 +1,8 @@
 import {atom, map} from 'nanostores';
 
 export type Error = {
-    message: string
+    message?: string,
+    formMessage?: string
 }
 export type Conversations = {
     message: string[],
@@ -12,7 +13,7 @@ export const NewMessage = atom('');
 export const NewResponse = map({});
 export const Conversations = map([]);
 export const isLoading = atom(false);
-export const Errors = map<Error>({message: ''});
+export const Errors = map<Error>({});
 
 export function SetNewResponse( response: string) {
     try {
@@ -29,16 +30,15 @@ export function SetNewMessage(message: string) {
     }
 }
 
-export function SetNewError({message}: Error) {
+export function SetNewError({ message, formMessage }: Error) {
     try {
-        Errors.setKey('message', message)
+        Errors.set({ message, formMessage })
     } catch (error) {
         return new Response('Bad request', {status: 400})
     }
 }
 
-export function setConversations(conversations) {
-    console.log(conversations)
+export function setConversations(conversations: any) {
     try {
         conversations.forEach(c => Conversations.setKey(c.id, conversations))
     } catch (error) {
