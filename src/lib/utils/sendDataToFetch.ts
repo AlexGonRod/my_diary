@@ -1,4 +1,4 @@
-export const fetchData = async (text: string) => {
+export const sendDataToFetch = async (text: string) => {
 
     const url = 'https://rimedia-paraphraser.p.rapidapi.com/api_paraphrase.php';
     let result = {};
@@ -25,5 +25,5 @@ export const fetchData = async (text: string) => {
     } catch (error) {
         return new Response('Error fetching data', {status: 400})
     }
-    return result;
+    return result
 }
