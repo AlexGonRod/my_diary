@@ -1,12 +1,19 @@
 <script lang="ts">
-	import Toast from '@components/Toast.svelte';
 	import Loader from '@components/Loader.svelte';
 	import Form from '@components/Form.svelte';
 	import Message from '@components/Message.svelte';
-	import { NewMessage, NewResponse, Errors, isLoading } from '@lib/store/store';
+	import MessageError from '@components/MessageError.svelte';
+	import {
+		NewMessage,
+		NewResponse,
+		isLoading,
+		Errors,
+	} from '@lib/store/store';
 
 	export let form: boolean = true;
-	export let conversation = null;
+	export let conversation: {}
+	const newResponse: { result?: any } = ($NewResponse = {});
+	const { result } = newResponse;
 </script>
 
 <section
@@ -16,20 +23,23 @@
 		<h1 class="text-2xl sm:text-4xl font-bold text-center mt-5">
 			¿Cómo puedo ayudarte?
 		</h1>
-		{#if $Errors?.message}
-			<Toast message={$Errors.message} />
-		{/if}
 		{#if conversation}
-			<Message user="YOU" message={conversation?.responses.message} />
-			<Message user="IA" message={conversation?.responses.responses.result} />
+			<Message user="YOU" message={conversation.responses?.message} />
+			<Message
+				user="IA"
+				message={conversation.responses?.responses.result}
+			/>
 		{/if}
 		{#if $NewMessage}
 			<Message user="YOU" message={$NewMessage} />
 			{#if $isLoading}
 				<Loader />
 			{/if}
-			{#if $NewResponse}
-				<Message user="IA" message={$NewResponse.result} />
+			{#if $Errors?.message}
+				<MessageError message={$Errors.message} />
+			{/if}
+			{#if $NewResponse && !$Errors?.message}
+				<Message user="IA" message={result} />
 			{/if}
 		{/if}
 	</div>
