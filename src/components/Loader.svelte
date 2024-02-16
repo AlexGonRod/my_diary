@@ -1,4 +1,6 @@
-<div class="loader"></div>
+<div class="loader-wrapper my-5 md:px-5 lg:px-1 xl:px-5 w-[90%]">
+	<div class="loader"></div>
+</div>
 
 <style>
 	.loader {
