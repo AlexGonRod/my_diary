@@ -12,10 +12,10 @@
 
 		const response = await res.json()
 		setConversations(response)
-		conversations = await response;
+		conversations = response;
 	})
 
-	$: if($NewMessage) conversations =[...conversations, {responses: {message: $NewMessage}}];
+	// $: if($NewMessage) conversations =[...conversations, {responses: {message: $NewMessage}}];
 </script>
 
 <aside
