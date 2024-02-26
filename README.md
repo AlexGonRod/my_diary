@@ -6,11 +6,11 @@ Template done using Astro and Tailwind that uses Supabase bot as an auth provide
 This repo is based on [AlexGonRod/astro_auth_supabase](https://github.com/AlexGonRod/astro_auth_supabase)
 
 ## TO_DO
-[] Fix responsive
-[] Fix form and make it sticky
-[] To connect another API to translate between languages
-[] Be able to make one request when unregistered
-[] Speech to text?
+- [] Fix responsive
+- [] Fix form and make it sticky
+- [] To connect another API to translate between languages
+- [] Be able to make one request when unregistered
+- [] Speech to text?
 
 To use this template you can just clone this repo with Bun:
 ```
