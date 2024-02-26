@@ -11,6 +11,7 @@ This repo is based on [AlexGonRod/astro_auth_supabase](https://github.com/AlexGo
 - [] To connect another API to translate between languages
 - [] Be able to make one request when unregistered
 - [] Speech to text?
+- [] Change bun with pnpm becauase env variables don't work
 
 To use this template you can just clone this repo with Bun:
 ```
