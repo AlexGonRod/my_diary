@@ -18,7 +18,6 @@
 	async function saveData(results: any) {
 		try {
 			const { text, result } = results;
-
 			const { data, error } = await supabase
 				.from('messages')
 				.upsert({ responses: { message: text, responses: result } })
@@ -55,17 +54,16 @@
 		} else {
 			try {
 				isLoading.set(true);
-				const result: { status?: string; message?: string } =
+				const result: { status?: string; message?: string , result?: any} =
 					await sendDataToFetch(text);
 
 				if (result.status !== 'success') {
 					errors.message = result.message;
 					SetNewError(errors);
 				}
-
 				SetNewMessage(text);
-				if (!$Errors) {
-					await saveData({ text, result: result });
+				if (!$Errors.message && !$Errors.formMessage) {
+					await saveData({ text, result: 'Hola' });
 				}
 			} catch (error) {
 				if (error instanceof Error) {
