@@ -11,13 +11,13 @@
 	} from '@lib/store/store';
 
 	export let form: boolean = true;
-	export let conversation: {}
+	export let conversation: {};
 	const newResponse: { result?: any } = ($NewResponse = {});
 	const { result } = newResponse;
 </script>
 
 <section
-	class="h-[560px] w-full px-40 col-span-10 md:col-span-8 bg-[#353441] flex flex-col justify-between items-center text-white"
+	class=" w-full h-[90vh] md:px-40 col-span-10 md:col-span-8 bg-[#353441] flex flex-col justify-between items-center text-white"
 >
 	<div class="w-full h-full flex flex-col justify-start items-center">
 		<h1 class="text-2xl sm:text-4xl font-bold text-center mt-5">

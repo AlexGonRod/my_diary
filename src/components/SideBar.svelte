@@ -19,7 +19,7 @@
 </script>
 
 <aside
-	class="hidden h-[580px] md:grid justify-left col-span-0 md:col-span-2 bg-gray-800"
+	class="hidden h-screen md:grid justify-left col-span-0 md:col-span-2 bg-gray-800"
 >
 	<div class="flex flex-col">
 		{#key conversations}

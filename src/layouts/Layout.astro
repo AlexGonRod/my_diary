@@ -27,7 +27,7 @@ const { title, description, isLogged } = Astro.props;
 	</head>
 	<body class="w-screen bg-[#353441]">
 		<Navbar {isLogged} />
-		<main class="h-[580px] grid grid-cols-10 auto-rows-[35rem] gap-0">
+		<main class="h-screen grid grid-cols-10 auto-rows-[35rem] gap-0">
 			<SideBar client:load/>
 			<slot />
 		</main>
