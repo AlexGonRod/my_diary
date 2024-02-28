@@ -54,7 +54,7 @@
 		} else {
 			try {
 				isLoading.set(true);
-				const result: { status?: string; message?: string , result?: any} =
+				const result: { status?: string; message?: string} =
 					await sendDataToFetch(text);
 
 				if (result.status !== 'success') {
@@ -63,7 +63,7 @@
 				}
 				SetNewMessage(text);
 				if (!$Errors.message && !$Errors.formMessage) {
-					await saveData({ text, result: 'Hola' });
+					await saveData({ text, result });
 				}
 			} catch (error) {
 				if (error instanceof Error) {
