@@ -32,7 +32,7 @@
 							<li class="hover:bg-gray-500/90 p-1 cursor-pointer">
 								<a
 									href={conv.id}
-									class="relative hover:text-grey-800 text-white/90 text-sm lg:text-base truncate block w-[240px] pr-6"
+									class="relative hover:text-grey-800 text-white/90 text-sm lg:text-base truncate block max-w-[240px] pr-6"
 								>
 									{conv.responses.message}
 								</a>
