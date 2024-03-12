@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Loader from '@components/Loader.svelte';
 	import Form from '@components/Form.svelte';
+	import Response from '@components/Response.svelte';
 	import Message from '@components/Message.svelte';
 	import MessageError from '@components/MessageError.svelte';
 	import {
@@ -12,8 +13,6 @@
 
 	export let form: boolean = true;
 	export let conversation: {};
-	const newResponse: { result?: any } = ($NewResponse = {});
-	const { result } = newResponse;
 </script>
 
 <section
@@ -39,7 +38,7 @@
 				<MessageError message={$Errors.message} />
 			{/if}
 			{#if $NewResponse && !$Errors?.message}
-				<Message user="IA" message={result} />
+				<Response data={$NewResponse} />
 			{/if}
 		{/if}
 	</div>
