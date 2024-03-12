@@ -6,13 +6,14 @@ Template done using Astro and Tailwind that uses Supabase bot as an auth provide
 This repo is based on [AlexGonRod/astro_auth_supabase](https://github.com/AlexGonRod/astro_auth_supabase)
 
 ## TO_DO
-- [] Fix responsive
+- [X] Fix responsive
 - [] Fix form and make it sticky
 - [] To connect another API to translate between languages
 - [] Be able to make one request when unregistered
 - [] Speech to text?
-- [] Change bun with pnpm becauase env variables don't work
+- [X] Change bun with pnpm because env variables don't work
 
+### **DISABLED**
 To use this template you can just clone this repo with Bun:
 ```
 bunx create-astro@latest my-astro-project-using-bun --template AlexGonRod/astro_auth_supabase
@@ -22,18 +23,21 @@ and then:
 bun install
 ```
 
+**Use npm insted**
+
+
 ## 🧞 Commands using Bun
 
 All commands are run from the root of the project, from a terminal:
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun run dev`             | Starts local dev server at `localhost:4321`      |
-| `bun run build`           | Build your production site to `./dist/`          |
-| `bun run preview`         | Preview your build locally, before deploying     |
-| `bun run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun run astro -- --help` | Get help using the Astro CLI                     |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
 ## Folder structure
 ```text
@@ -42,7 +46,6 @@ All commands are run from the root of the project, from a terminal:
 │   └── favicon.svg
 ├── src/
 │   ├── components/
-│   │   └── Navbar.astro
 │   ├── layouts/
 │   │   └── Layout.astro
 │   ├── middelware/
