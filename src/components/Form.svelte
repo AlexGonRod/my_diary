@@ -1,43 +1,8 @@
 <script lang="ts">
 	import { Label, Input, Helper } from 'flowbite-svelte';
-	import { supabase } from '@lib/db/supabase';
-	import {
-		SetNewMessage,
-		SetNewResponse,
-		SetNewError,
-		Errors,
-		isLoading,
-	} from '@lib/store/store';
-	import { sendDataToFetch } from '@lib/utils/sendDataToFetch';
-
-	let errors: {
-		message?: string | undefined;
-		formMessage?: string | undefined;
-	} = {};
-
-	async function saveData(results: any) {
-		try {
-			const { text, result } = results;
-			const { data, error } = await supabase
-				.from('messages')
-				.upsert({ responses: { message: text, responses: result } })
-				.select();
-			if (error) {
-				errors.message = error.message;
-				SetNewError(errors);
-			}
-
-			const { responses } = data[0].responses;
-
-			SetNewResponse(responses);
-		} catch (error) {
-			if (error instanceof Error) {
-				errors.message = error.message;
-				SetNewError(errors);
-			}
-		}
-		return { status: 'success' };
-	}
+	import { SetNewResponse, SetNewError, Errors } from '@lib/store/store';
+	export let Submit;
+	export let errors;
 
 	function resetValues() {
 		errors = { message: '' };
@@ -46,34 +11,8 @@
 	}
 
 	async function submit(e: SubmitEvent) {
-		resetValues();
-		const text = e.target?.message?.value;
-		if (text.length < 1) {
-			errors.formMessage = 'Message is required';
-			SetNewError(errors);
-		} else {
-			try {
-				isLoading.set(true);
-				const result: { status?: string; message?: string} =
-					await sendDataToFetch(text);
-
-				if (result.status !== 'success') {
-					errors.message = result.message;
-					SetNewError(errors);
-				}
-				SetNewMessage(text);
-				if (!$Errors.message && !$Errors.formMessage) {
-					await saveData({ text, result });
-				}
-			} catch (error) {
-				if (error instanceof Error) {
-					errors.message = error.message;
-					SetNewError(errors);
-				}
-			} finally {
-				isLoading.set(false);
-			}
-		}
+		resetValues(e);
+		await Submit(e);
 	}
 </script>
 
